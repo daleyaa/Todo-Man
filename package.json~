@@ -1,0 +1,19 @@
+{
+  "name": "todo_man",
+  "version": "1.0.0",
+  "description": "A website to create and manage todos.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daleyaa/Todo-Man.git"
+  },
+  "author": "Kosar Asadipour <kosar.asadipour@yahoo.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daleyaa/Todo-Man/issues"
+  },
+  "homepage": "https://github.com/daleyaa/Todo-Man#readme"
+}
