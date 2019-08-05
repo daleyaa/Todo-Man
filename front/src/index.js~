@@ -1,5 +1,5 @@
 import Button from './Button';
-import Page1 from './first_page';
+import page1 from './first_page';
 const React = require('react');
 const ReactDOM  = require('react-dom');
 //import './index.css';
@@ -7,7 +7,7 @@ const ReactDOM  = require('react-dom');
 class Post extends React.Component{
 	render() {
     	return (
-    		<Page1 />
+    		<Button />
     	);
 	}
 }
