@@ -1,43 +1,52 @@
 import Button from'./button';
-import {Router, Route} from 'react-router';
-import { HashRouter } from 'react-router-dom';
-import Login_page from './login-page';
-import Signup_page from './signup-page';
+import Loginpage from './login-page';
+import Signuppage from './signup-page';
+
+import { Router, Route,Redirect} from 'react-router';
+
 const React = require('react');
 const ReactDOM  = require('react-dom');
 
-export default class First_page extends React.Component{
+export default class Firstpage extends React.Component{
+	
+	constructor(){
+		super();
+		this.state = {};	
+	}
 	
 	render() {
-    	return (
-    		<div>		
-    			<h1>Welcome!</h1>
-    			<Button title="login"  onClick= {this.Login}/>
-    			<Button title="sign up" onClick= {this.Signup}/>
-			</div>	
+		if (this.state.redirectToLogin) {
+			return(
+				<Redirect push to="/login"/>
+			);
+		}
+		else if(this.state.redirectToSignup) {
+			return(
+				<Redirect push to="/signup"/>
+			);
+		}
+		else{
+    		return (
+    			<div>		
+    				<h1>Welcome!</h1>
+    				<Button title="login"  onClick={this.handleLoginButton}/>
+    				<Button title="sign up"  onClick={this.handleSignupButton}/>
+				</div>
+			);
+		}
+	}
+	
+	handleLoginButton = () => {
+		//to loginpage
+		this.setState(
+			{redirectToLogin : true}
 		);
 	}
-	Login(){
-	//for login-page
-		const routes = (
-			<HashRouter>
-				<Router>
-					<Route path = "/login_page" component = {Login_page}/>	
-				</Router>
-			</HashRouter>	
+	
+	handleSignupButton = () => {
+		//to signuppage
+		this.setState(
+			{redirectToSignup : true}
 		);
-		ReactDOM.render(<Login_page />, document.getElementById('root'));		
-	}
-
-	Signup(){
-		//for signup-page
-		const routes = (
-			<HashRouter>
-				<Router>
-					<Route path = "/signup_page" component = {Signup_page}/>	
-				</Router>
-			</HashRouter>	
-		);
-		ReactDOM.render(<Signup_page />, document.getElementById('root'));
 	}
 }	

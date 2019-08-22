@@ -1,18 +1,36 @@
+import{BrowserRouter } from 'react-router-dom';
+import { Router, Route} from 'react-router';
 
-import First_page from './first-page';
+import Firstpage from './first-page';
+import Todopage from './todo-page';
+import Managerpage from './manager-page';
+import Loginpage from './login-page';
+import Signuppage from './signup-page';
+
 const React = require('react');
 const ReactDOM  = require('react-dom');
 //import './index.css';
 //import App from './App';
 
-class Post extends React.Component{//call first page
+class Index extends React.Component{//call first page
 	
 	render() {
     	return (
-    		<First_page />
+    		<div>
+    			<Route  exact={true} path = '/' component = {Firstpage}/>
+    			<Route path = '/login' component = {Loginpage}/>
+    			<Route path = '/signup' component = {Signuppage}/>
+    			<Route path = '/add-todo' component = {Todopage}/>
+    			<Route path = '/manager' component = {Managerpage}/>
+    		</div>
+
     	);
 	}
 }
 
-ReactDOM.render(<Post />, document.getElementById('root'));
+ReactDOM.render(
+	<BrowserRouter >
+		<Index />
+	</BrowserRouter >
+	, document.getElementById('root'));
 

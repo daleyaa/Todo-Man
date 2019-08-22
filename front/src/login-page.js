@@ -1,50 +1,72 @@
-import Manager_page from './manager-page';
-import {Router, Route} from 'react-router';
-import { HashRouter } from 'react-router-dom';
+import Managerpage from './manager-page';
+
+import {Router, Route,Redirect} from 'react-router';
+
 const React = require('react');
 const ReactDOM  = require('react-dom');
 
-export default class Login_page extends React.Component{
+export default class Loginpage extends React.Component{
+	
 	constructor(props) {
    	super(props);
-    	this.state = {username:''};
-    	this.handleChange = this.handleChange.bind(this);
+    	this.state = {username:'',
+    		password:''};
+    	this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    	this.handlePasswordChange = this.handlePasswordChange.bind(this);
  	}
  	
 	render(){//form
-		return( 
-			<div>    
-				<h1>Login</h1>
-				<form>
-  					<label>
-    					<p>username:</p>
-   					 <input type = "text" value= {this.state.username} 
-   					 		onChange={this.handleChange} name = "username" />
-    					 <p>password:</p>
-      				 <input type = "text" name = "password"/>
-  					</label>
-  					<p></p>
-  					<input type = "submit" onClick = {this.Click} value = "login" />
-  					<input type = "submit" value = "cancel" />
+		if(this.state.redirectToLogin) {
+			return(
+				<Redirect push to="/manager"/>
+			);
+		}
+		else if(this.state.redirectToFirst) {
+			return(
+				<Redirect push to="/"/>
+			);
+		}
+		else{	
+			return( 
+				<div>    
+					<h1>Login</h1>
+					<form>
+  						<label>
+    						<p>username:</p>
+   					 	<input type = "text" value= {this.state.username} 
+   					 		onChange={this.handleUsernameChange} name = "username" />
+    					 	<p>password:</p>
+      				 	<input type = "text" value= {this.state.password} 
+   					 		onChange={this.handlePasswordChange} name = "password"/>
+  						</label>
+  						<p></p>
+  						<input type = "submit" onClick = {this.handleLoginButton} value = "login" />
+  						<input type = "submit" onClick={this.handleFirstButton } value = "cancel" />
 					</form>				
 				</div>		
-		)
-			
+			)		
+		}
 	}
-	Click(){ //for router
-		const routes = (
-			<HashRouter>
-				<Router>
-					<Route path = "/manager_page" component = {Manager_page}/>	
-				</Router>
-			</HashRouter>	
-		);
-		ReactDOM.render(<Manager_page/>,
-			document.getElementById('root'));
 	
+	handleLoginButton= () => {
+		//to loginpage
+		this.setState(
+			{redirectToLogin : true}
+		);
 	}
-	 handleChange(e) {
+	
+	handleFirstButton = () => {
+		//to firstpage
+		this.setState(
+			{redirectToFirst : true}
+		);
+	}
+	
+	 handleUsernameChange(e) {
     	this.setState({username: e.target.value});
 	}
 	
+	handlePasswordChange(e) {
+    	this.setState({password: e.target.value});
+	}
 }
