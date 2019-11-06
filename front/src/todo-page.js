@@ -1,5 +1,6 @@
-import Managerpage from './manager-page';
-import {Router, Route, Redirect} from 'react-router';
+import './App.css';
+import { Redirect} from 'react-router';
+import { Grid, Form , Segment, Button} from 'semantic-ui-react';
 
 const React = require('react');
 const ReactDOM  = require('react-dom');
@@ -28,33 +29,26 @@ export default class Todopage extends React.Component{
 		}
 		else{
 			return(
-				<div>
-					<form>
-  						<label>
-    						<p>New todo:</p>
-   					 	<input type = "text" 
-   					 		value= {this.state.todo} onChange=
-   					 		{this.handleTodoChange} name = "NewTodo" />
-    						<p>Year:</p>
-   					 	<input type = "text" 
-   					 		value= {this.state.year} onChange=
-   					 		{this.handleYearChange} name = "Year" />
-   					 	<p>Month:</p>
-   					 	<input type = "text" 
-   					 		value= {this.state.month} onChange=
-   					 		{this.handleMonthChange} name = "month" />
-   					 	<p>Day:</p>
-   					 	<input type = "text" 
-   					 		value= {this.state.day} onChange=
-   					 		{this.handleDayChange} name = "Day" />
-  						</label>
-  						<p></p>
-  						<input type = "submit" onClick = 
-  							{this.handelBackButton} value = "save" />
-  						<input type = "submit" onClick = 
-  							{this.handelBackButton} value = "cancel" />
-					</form>
-				</div>
+
+  				<Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+  					<Grid.Column style={{ maxWidth: 450 }}>
+ 						<h1 class='main-font' textAlign='center'>new Todo</h1> 
+						<Form size='large'>
+
+	  						<Segment stacked>
+								<Form.Input fluid icon='tasks' iconPosition='left' placeholder='Todo' />
+								<Form.Input fluid icon='calendar alternate' iconPosition='left' placeholder='Year'/>
+								<Form.Input fluid icon='calendar alternate outline' iconPosition='left' placeholder='Month' />
+								<Form.Input fluid icon='calendar' iconPosition='left' placeholder='Day' />
+		
+
+								<Button color='teal' onClick={this.handleBackButton } fluid size='large'>
+		  							save
+								</Button>
+	  						</Segment>
+						</Form>
+ 					</Grid.Column>
+				</Grid>
 			)
 		}
 	}
@@ -75,7 +69,7 @@ export default class Todopage extends React.Component{
     	this.setState({ todo: e.target.value});
 	}
 		
-	handelBackButton= () => {//to managerpage
+	handleBackButton= () => {//to managerpage
 		this.setState(
 			{redirectToManager : true}
 		);

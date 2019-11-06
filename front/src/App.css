@@ -1,12 +1,38 @@
+
 .App {
   text-align: center;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+  animation: App-logo-spin infinite 5s linear;
+  
   pointer-events: none;
+   animation-name: heartBeat;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
 }
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+
+  14% {
+    transform: scale(1.3);
+  }
+
+  28% {
+    transform: scale(1);
+  }
+
+  42% {
+    transform: scale(1.3);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+}
+
 
 .App-header {
   background-color: #282c34;
@@ -18,16 +44,54 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
 .App-link {
   color: #61dafb;
 }
+.main-font{
+	color:#004d4d;
+   font-family:Algerian;
+   font-size: 70px;
+   animation-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0);
+   }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.element-font{
+	color:gray;
+   font-size: 20px;
+   }
+.background-up{
+	text-align: center; 
+   background-color:lightgray;
+   border:4px solid #4d4d4d;
 }
+.title-color{
+	color:#004d4d;
+	font-size: 30px;
+	font-family:Algerian;
+}
+.backgrounds{
+	background-color: #99ccff;
+	border:2px solid #000099;
+	
+}
+#label{ color:#005c99;
+ }
+.img{
+	@border:5px solid #000080;
+	border-radius: 50%;
+	animation-name: bounce;
+	
+}
+.button {
+  background-color: #f4511e;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 1;
+  transition: 0.3s;
+
+}
+.button:hover {opacity: 0.6}

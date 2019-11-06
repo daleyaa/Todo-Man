@@ -1,11 +1,9 @@
-import Button from'./button';
-import Loginpage from './login-page';
-import Signuppage from './signup-page';
-
-import { Router, Route,Redirect} from 'react-router';
-
+import {Grid,Button } from 'semantic-ui-react';
+import { Redirect} from 'react-router';
+import './App.css';
+import v from './v.jpg';
+import w from './w.jpg';
 const React = require('react');
-const ReactDOM  = require('react-dom');
 
 export default class Firstpage extends React.Component{
 	
@@ -26,11 +24,57 @@ export default class Firstpage extends React.Component{
 			);
 		}
 		else{
-    		return (
-    			<div>		
-    				<h1>Welcome!</h1>
-    				<Button title="login"  onClick={this.handleLoginButton}/>
-    				<Button title="sign up"  onClick={this.handleSignupButton}/>
+			return (
+				<div>
+					<Grid textAlign='right' verticalAlign='right' >
+						<Grid.Row >
+							<Grid.Column>
+								<Button color='teal' onClick={this.handleLoginButton }>
+            						Login
+          						</Button>
+		  						<Button color='gray' onClick={this.handleSignupButton } >
+            						Sign up
+          						</Button>
+							</Grid.Column>
+						</Grid.Row>
+					</Grid>
+					<Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+					
+						<Grid.Column style={{ maxWidth: 450 }}>
+							<h1 class='main-font img App-logo' textAlign='center'>Welcome!</h1>
+    					</Grid.Column>
+							
+					</Grid>
+					<table>
+						<tr>
+							<th>
+								<img verticalAlign='right' class = 'img' src={w}    width="500" height="300"/>
+							</th>
+							<th class='element-font'>
+								<h1 class='title-color'>Don't forget your todo</h1>
+								<br/>
+								Keep track of your daily todos and do not involve your mind in remembering them.
+								 Then just focus on doing them
+							</th>
+							
+						</tr>
+						<br/><br/><br/><br/><br/><br/>
+						<tr>
+							<th class='element-font'>
+							
+								<h1 class='title-color'>Enjoy the life</h1>
+								<br/>
+								You can record and manage your daily todos.
+								Do all your work in a timely and orderly way and enjoy life.
+							</th>
+							<th>
+								<img verticalAlign='right' class = 'img' src={v}    width="500" height="300"/>
+							</th>
+							
+							
+						</tr>
+						
+					</table>
 				</div>
 			);
 		}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="http://localhost:3000/favicon.ico">
+    <link rel="stylesheet" href="React%20App_files/semantic.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="http://localhost:3000/manifest.json">
+    <!--
+      Notice the use of  in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  <style type="text/css">
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 5s linear;
+  height: 20vmin;
+  pointer-events: none;
+   animation-name: heartBeat;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+}
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+
+  14% {
+    transform: scale(1.3);
+  }
+
+  28% {
+    transform: scale(1);
+  }
+
+  42% {
+    transform: scale(1.3);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+}
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.App-link {
+  color: #61dafb;
+}
+.main-font{
+	color:teal;
+   font-family:Algerian;
+   font-size: 70px;
+   animation-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0);
+   }
+
+
+.element-font{
+	color:#005c99;
+   font-family:snap itc;
+   font-size: 20px;
+   }
+.background-up{
+	text-align: center; 
+   background-color:lightgray;
+   border:4px solid #4d4d4d;
+}
+.colors{
+	color:#ff4d4d;
+}
+.backgrounds{
+	background-color: #99ccff;
+	border:2px solid #000099;
+	
+}
+#label{ color:#005c99;
+   font-family:snap itc;}
+.img{
+	@border:5px solid #000080;
+	filter: contrast(150%);
+	border-radius: 50%;
+	animation-name: bounce;
+	
+}
+.button {
+  background-color: #f4511e;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 1;
+  transition: 0.3s;
+
+}
+.button:hover {opacity: 0.6}</style></head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"><div class="ui segment pushable"><div class="ui inverted vertical labeled icon ui push left thin sidebar menu"><a class="item"><i aria-hidden="true" class="sign-in icon"></i>Login</a><a class="item"><i aria-hidden="true" class="signup icon"></i>Sign up</a><a class="item"><i aria-hidden="true" class="numbered list icon"></i>Manager</a><a class="item"><i aria-hidden="true" class="tasks icon"></i>Todo</a><a class="item"><i aria-hidden="true" class="sign out icon"></i>Log out</a></div><div class="pusher"><div class="ui basic segment"><button class="ui teal icon button"><i aria-hidden="true" class="sidebar icon"></i></button><div><div style="height: 100vh;" class="ui center aligned middle aligned grid"><div style="max-width: 450px;" class="column"><form class="ui large form"><div class="ui stacked segment"><div class="field"><div class="ui fluid left icon input"><input placeholder="username" type="text"><i aria-hidden="true" class="user icon"></i></div></div><div class="field"><div class="ui fluid left icon input"><input placeholder="Password" type="password"><i aria-hidden="true" class="lock icon"></i></div></div><button class="ui teal large fluid button">save</button></div></form></div></div></div></div></div></div></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  <script src="React%20App_files/bundle.js"></script><script src="React%20App_files/0.js"></script><script src="React%20App_files/main_002.js"></script><script src="React%20App_files/main.js"></script>
+
+</body></html>

@@ -1,11 +1,8 @@
-import {Router, Route,Redirect} from 'react-router';
+import {Redirect} from 'react-router';
+import { Grid, Form , Button, GridRow} from 'semantic-ui-react';
 
 import Listtodo from './list-todo';
-import Todopage from './todo-page';
-import Loginpage from './login-page';
-import Firstpage from './first-page';
-import Button from './button';
-
+import './App.css';
 import b from './b.jpg';
 import c from './c.jpg';
 
@@ -17,7 +14,7 @@ export default class Managerpage extends React.Component{
 	constructor(props) {
 		super(props);
     	this.state = {
-    		username:"username",
+    		username:"user",
     		gender:"Female",
     		year:0,
     		month:0,
@@ -42,16 +39,28 @@ export default class Managerpage extends React.Component{
 		}
 		else{
 			return(
-				<div>
-					<h1>Hi {this.state.username}!</h1>
-					{this.profile()}
-					<p></p>			
-					<Listtodo/>
-					<input type = "submit" onClick = {this.handlenewTodoButton}
-						value = "New todo" />
-					<input type = "submit" onClick = {this.handleLogoutButton}
-				 		value = "log out" />
-				</div>
+				<Form >
+					<Grid columns={3} textAlign='center'>
+						<GridRow >
+							<Grid.Column></Grid.Column>
+							<Grid.Column  >
+								{this.profile()}
+								<h1 class='main-font App-logo'>Hi {this.state.username}!</h1>	
+							</Grid.Column>
+							<Grid.Column   verticalAlign='center'>	
+							</Grid.Column>
+						</GridRow>
+					</Grid>
+					<Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+   						<Grid.Column style={{ maxWidth: 450 }}>	
+				
+							<Listtodo/>
+							<Button color='teal' onClick={this.handlenewTodoButton } fluid size='large'>
+           						new todo
+          					</Button>
+     					</Grid.Column>
+   					</Grid>
+				</Form>
 			);		
 		}
 	}
@@ -69,26 +78,13 @@ export default class Managerpage extends React.Component{
 			{redirectToFirst : true}
 		);
 	}
-	
-	listTodo(){//list todo with checkbox
-		const todos = this.state.todo;
-  		const listItems = todos.map((todo) =>	
-   		<form onsubmit ={this.Notification}>
-				<input type="checkbox"onChange={this.checkIt} disable="false"/>
-				<input type = "submit" value = {todo} />
-			</form>   
-  		);
-		return(
-	 		<p>{listItems}</p>
-		);
 
-	}
-	
 	profile(){//import image
  		return(
-			<img src = {this.state.gender == "Female"? b:c}
+			<img verticalAlign='right' src = {this.state.gender == "Female"? b:c}
 			 	alt = {this.state.gender == "Female"? 
-			 	"female":"male"} width="100" height="75"/>
+			 	"female":"male"} width="200" height="150"/>
 		);		
  	}
+
 }

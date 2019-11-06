@@ -1,6 +1,7 @@
-import Managerpage from './manager-page';
+import {Redirect} from 'react-router';
+import { Button, Form, Grid, Image, Message, Segment } from 'semantic-ui-react';
+import b from './aaa.jpg';
 
-import {Router, Route,Redirect} from 'react-router';
 
 const React = require('react');
 const ReactDOM  = require('react-dom');
@@ -16,49 +17,54 @@ export default class Loginpage extends React.Component{
  	}
  	
 	render(){//form
-		if(this.state.redirectToLogin) {
+		if(this.state.redirectToManager) {
 			return(
 				<Redirect push to="/manager"/>
 			);
 		}
-		else if(this.state.redirectToFirst) {
+		else if(this.state.redirectToSignup) {
 			return(
-				<Redirect push to="/"/>
+				<Redirect push to="/signup"/>
 			);
 		}
-		else{	
-			return( 
-				<div>    
-					<h1>Login</h1>
-					<form>
-  						<label>
-    						<p>username:</p>
-   					 	<input type = "text" value= {this.state.username} 
-   					 		onChange={this.handleUsernameChange} name = "username" />
-    					 	<p>password:</p>
-      				 	<input type = "text" value= {this.state.password} 
-   					 		onChange={this.handlePasswordChange} name = "password"/>
-  						</label>
-  						<p></p>
-  						<input type = "submit" onClick = {this.handleLoginButton} value = "login" />
-  						<input type = "submit" onClick={this.handleFirstButton } value = "cancel" />
-					</form>				
-				</div>		
-			)		
+		else{
+			return(
+
+  				<Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+    				<Grid.Column style={{ maxWidth: 450 }}>
+        				<Image  src={b} verticalAlign='middle'/>
+      					<Form size='large'>
+        					<Segment stacked>
+			
+          						<Form.Input fluid icon='user' iconPosition='left' placeholder='username' />
+          						<Form.Input fluid icon='lock' iconPosition='left' placeholder='Password' type='password'/>
+
+          						<Button color='teal' onClick={this.handleManagerButton } fluid size='large'>
+            						Login
+          						</Button>
+        					</Segment>
+      					</Form>
+      					<Message>
+        					New to us? <a href='./signup'>Sign Up</a>
+      					</Message>
+  					</Grid.Column>
+  				</Grid>
+			)	
+			
 		}
 	}
-	
-	handleLoginButton= () => {
-		//to loginpage
+
+	handleManagerButton= () => {
+		//to managerpage
 		this.setState(
-			{redirectToLogin : true}
+			{redirectToManager : true}
 		);
 	}
 	
-	handleFirstButton = () => {
-		//to firstpage
+	handleSignup = () => {
+		//to signuppage
 		this.setState(
-			{redirectToFirst : true}
+			{redirectToSignup : true}
 		);
 	}
 	

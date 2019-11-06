@@ -1,16 +1,14 @@
 import{BrowserRouter } from 'react-router-dom';
-import { Router, Route} from 'react-router';
+import {Route} from 'react-router';
 
 import Firstpage from './first-page';
 import Todopage from './todo-page';
 import Managerpage from './manager-page';
 import Loginpage from './login-page';
 import Signuppage from './signup-page';
-
+import MySidebar from './my-sidebar';
 const React = require('react');
 const ReactDOM  = require('react-dom');
-//import './index.css';
-//import App from './App';
 
 class Index extends React.Component{//call first page
 	
@@ -30,7 +28,7 @@ class Index extends React.Component{//call first page
 
 ReactDOM.render(
 	<BrowserRouter >
-		<Index />
+		<MySidebar content={<Index/>}/>
 	</BrowserRouter >
 	, document.getElementById('root'));
 
