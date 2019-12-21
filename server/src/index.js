@@ -41,7 +41,7 @@ userDao.createTable()
 });
 
 //Auth routes
-let signupRouter = new SignupRouter();
+let signupRouter = new SignupRouter(userDao);
 app.use("/auth/signup", signupRouter.getRouter());
 
 let loginRouter = new LoginRouter();

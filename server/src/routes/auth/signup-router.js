@@ -14,11 +14,12 @@ class SignupRouter {
                 .then ((hashedPassword) => {
                     return this.userDao.createUser(
                         req.body.username,
-                        req.body.password,
+                        hashedPassword,
                         req.body.gender
                     );
                 })
                 .then ( () => {
+                    console.log("Done")
                     res.send(
                         JSON.stringify({
                             ok: true
@@ -26,6 +27,8 @@ class SignupRouter {
                     );
                 })
                 .catch ((err) => {
+
+                    console.log("Failed: " + err)
                     res.send(
                         JSON.stringify({
                             ok: false,
