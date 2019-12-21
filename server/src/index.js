@@ -4,7 +4,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 
-const port = 3000;
+const port = 3001;
 
 const SignupRouter = require("./routes/auth/signup-router");
 const LoginRouter = require("./routes/auth/login-router");
@@ -17,12 +17,8 @@ const UserDao = require("./data/user-dao");
 //Use body parser for application/json content
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
-}));
+app.use(cors());
 
-app.options('*', cors());
 app.use(cookieParser());
 
 //Initialize the db

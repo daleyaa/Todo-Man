@@ -41,7 +41,7 @@ export default class Firstpage extends React.Component{
 					<Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
 					
 						<Grid.Column style={{ maxWidth: 450 }}>
-							<h1 class='main-font img App-logo' textAlign='center'>Welcome!</h1>
+							<h1 class='main-font img' textAlign='center'>Welcome!</h1>
     					</Grid.Column>
 							
 					</Grid>

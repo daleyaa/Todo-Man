@@ -11,9 +11,11 @@ export default class Loginpage extends React.Component{
 	constructor(props) {
    	super(props);
     	this.state = {username:'',
-    		password:''};
-    	this.handleUsernameChange = this.handleUsernameChange.bind(this);
-    	this.handlePasswordChange = this.handlePasswordChange.bind(this);
+			password:'',
+			tosChecked: false};
+    	this.handleUsername = this.handleUsername.bind(this);
+		this.handlePassword = this.handlePassword.bind(this);
+		this.handleTosChecked = this.handleTosChecked.bind(this);
  	}
  	
 	render(){//form
@@ -36,10 +38,12 @@ export default class Loginpage extends React.Component{
       					<Form size='large'>
         					<Segment stacked>
 			
-          						<Form.Input fluid icon='user' iconPosition='left' placeholder='username' />
-          						<Form.Input fluid icon='lock' iconPosition='left' placeholder='Password' type='password'/>
+								  <Form.Input fluid icon='user' iconPosition='left' placeholder='username' 
+								  	onClick={this.handleUsername}/>
+								  <Form.Input fluid icon='lock' iconPosition='left' placeholder='Password' 
+								  	type='password' onClick={this.handlePassword}/>
 
-          						<Button color='teal' onClick={this.handleManagerButton } fluid size='large'>
+          						<Button color='teal' onClick={this.handleLoginButton } fluid size='large'>
             						Login
           						</Button>
         					</Segment>
@@ -54,7 +58,7 @@ export default class Loginpage extends React.Component{
 		}
 	}
 
-	handleManagerButton= () => {
+	handleLoginButton= () => {
 		//to managerpage
 		this.setState(
 			{redirectToManager : true}
@@ -68,11 +72,30 @@ export default class Loginpage extends React.Component{
 		);
 	}
 	
-	 handleUsernameChange(e) {
-    	this.setState({username: e.target.value});
+	handlePassword = (event) => {
+		this.setState({
+			username:this.state.username,
+			password:event.target.value,
+			passwordConfirm:this.state.passwordConfirm,
+			gender:this.state.gender,
+			tosChecked:this.state.tosChecked
+		});
 	}
-	
-	handlePasswordChange(e) {
-    	this.setState({password: e.target.value});
+	handleUsername = (event) => {
+		this.setState({
+			username:event.target.value,
+			password:this.state.password,
+			passwordConfirm:this.state.passwordConfirm,
+			gender:this.state.gender,
+			tosChecked:this.state.tosChecked
+		});
+	}
+	handleTosChecked = (event) => {
+		this.setState({
+			username:this.state.username,
+			password:this.state.password,
+			passwordConfirm:this.state.passwordConfirm,
+			tosChecked:event.target.checked ?true : false
+		});
 	}
 }

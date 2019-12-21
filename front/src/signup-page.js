@@ -11,9 +11,19 @@ export default class Signuppage extends React.Component{
 	
 	constructor(props) {
     	super(props);
-    	this.state = {username:''};
-   }
-   
+		this.state = {
+			username:'',
+			password:'',
+			passwordConfirm:'',
+			gender:'',
+			tosChecked:false
+		};
+		this.handleUsername = this.handleUsername.bind(this);
+		this.handlePassword = this.handlePassword.bind(this);
+		this.handlePasswordConfirm = this.handlePasswordConfirm.bind(this);
+		this.handleGender = this.handleGender.bind(this);
+		this.handleTosChecked = this.handleTosChecked.bind(this);
+   } 
 	render(){
 		if(this.state.redirectToManager) {
 			return(
@@ -32,17 +42,21 @@ export default class Signuppage extends React.Component{
 					  <img src={a} class='img'/>
 						<Form size='large'>
 	  						<Segment stacked>
-								<Form.Input fluid icon='user' iconPosition='left' placeholder='username' />
-								<Form.Input fluid icon='lock' iconPosition='left' placeholder='Password' type='password'/>
-								<Form.Input fluid icon='lock' iconPosition='left' placeholder='Confirm Password' type='password'/>
+								<Form.Input fluid icon='user' iconPosition='left' placeholder='username'	
+									 onChange={this.handleUsername}  />
+								<Form.Input fluid icon='lock' iconPosition='left' placeholder='Password'
+									 type='password' onChange={this.handlePassword}/>
+								<Form.Input fluid icon='lock' iconPosition='left' placeholder='Confirm Password' 
+									type='password' onChange={this.handlePasswordConfirm}/>
 								<Form.Field required>
-    								<Select  placeholder='gender' options={gender} />
+    								<Select  placeholder='gender' options={gender} onChange={this.handleGender} />
     							</Form.Field>
     				
     							<Form.Field required>
-      								<Checkbox label='I agree to the Terms and Conditions' />
+									  <input type="checkbox" name="tos"
+									    onChange={this.handleTosChecked}/>
     							</Form.Field>
-								<Button color='teal' onClick={this.handleManagerButton } fluid size='large'>
+								<Button color='teal' onClick={this.handleSignupButton } fluid size='large'>
 		  							Sign up
 								</Button>
 	  						</Segment>
@@ -54,12 +68,83 @@ export default class Signuppage extends React.Component{
 			);
 		}
 	}
+	handleTosChecked = (event) => {
+		this.setState({
+			username:this.state.username,
+			password:this.state.password,
+			passwordConfirm:this.state.passwordConfirm,
+			tosChecked:event.target.checked ?true : false
+		});
+	}
+	handlePasswordConfirm = (event) => {
+		this.setState({
+			username:this.state.username,
+			password:this.state.password,
+			passwordConfirm:event.target.value,
+			gender:this.state.gender,
+			tosChecked:this.state.tosChecked
+		});
+	}
+	handleGender = (event) => {
+		this.setState({
+			username:this.state.username,
+			password:this.state.password,
+			passwordConfirm:this.state.passwordConfirm,
+			gender:event.target.innerText == "Male" ? 0 : 1,
+			tosChecked:this.state.tosChecked
+		});
+	}
+	handlePassword = (event) => {
+		this.setState({
+			username:this.state.username,
+			password:event.target.value,
+			passwordConfirm:this.state.passwordConfirm,
+			gender:this.state.gender,
+			tosChecked:this.state.tosChecked
+		});
+	}
+	handleUsername = (event) => {
+		this.setState({
+			username:event.target.value,
+			password:this.state.password,
+			passwordConfirm:this.state.passwordConfirm,
+			gender:this.state.gender,
+			tosChecked:this.state.tosChecked
+		});
+	}
+
+
 	
-	handleManagerButton = () => {
+	handleSignupButton = (event) => {
 		//to managerpage
-		this.setState(
+		/*this.setState(
 			{redirectToManager : true}
-		);
+		);*/
+		event.preventDefault();
+		console.log(this.state);
+		let data = {
+			username: this.state.username,
+			password: this.state.password,
+			gender: this.state.gender
+		};
+		if(this.state.username && this.state.password){
+			if(this.state.password === this.state.passwordConfirm){
+				if(this.state.tosChecked){
+					fetch('http://localhost:3001/auth/signup',
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify(data)
+					}).then((res) => {
+						console.log(res);
+					});
+				}
+			}
+		}
+
+
 	}
 	
 	handleFirstButton = () => {

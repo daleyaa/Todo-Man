@@ -45,7 +45,7 @@ export default class Managerpage extends React.Component{
 							<Grid.Column></Grid.Column>
 							<Grid.Column  >
 								{this.profile()}
-								<h1 class='main-font App-logo'>Hi {this.state.username}!</h1>	
+								<h1 class='main-font'>Hi {this.state.username}!</h1>	
 							</Grid.Column>
 							<Grid.Column   verticalAlign='center'>	
 							</Grid.Column>
@@ -53,7 +53,6 @@ export default class Managerpage extends React.Component{
 					</Grid>
 					<Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
    						<Grid.Column style={{ maxWidth: 450 }}>	
-				
 							<Listtodo/>
 							<Button color='teal' onClick={this.handlenewTodoButton } fluid size='large'>
            						new todo

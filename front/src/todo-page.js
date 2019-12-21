@@ -42,7 +42,7 @@ export default class Todopage extends React.Component{
 								<Form.Input fluid icon='calendar' iconPosition='left' placeholder='Day' />
 		
 
-								<Button color='teal' onClick={this.handleBackButton } fluid size='large'>
+								<Button color='teal' onClick={this.handleSaveButton } fluid size='large'>
 		  							save
 								</Button>
 	  						</Segment>
@@ -69,7 +69,7 @@ export default class Todopage extends React.Component{
     	this.setState({ todo: e.target.value});
 	}
 		
-	handleBackButton= () => {//to managerpage
+	handleSaveButton= () => {//to managerpage
 		this.setState(
 			{redirectToManager : true}
 		);
