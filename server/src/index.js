@@ -17,7 +17,11 @@ const UserDao = require("./data/user-dao");
 //Use body parser for application/json content
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({
+    origin: "http://lcalhost:3000",
+    credentials: true
+}));
+app.options('*', cors());
 
 app.use(cookieParser());
 
@@ -40,11 +44,18 @@ userDao.createTable()
     console.log("Failed to create users table");
 });
 
+let testRouter = express.Router();
+testRouter.post('/test', (req, res) => {
+    console.log(req.body);
+    res.send({ali:reza});
+});
+app.use('/', testRouter);
+
 //Auth routes
 let signupRouter = new SignupRouter(userDao);
 app.use("/auth/signup", signupRouter.getRouter());
 
-let loginRouter = new LoginRouter();
+let loginRouter = new LoginRouter(userDao);
 app.use("/auth/login", loginRouter.getRouter());
 
 let checkLoginRouter = new CheckLoginRouter();

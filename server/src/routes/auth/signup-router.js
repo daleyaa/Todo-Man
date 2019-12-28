@@ -19,7 +19,7 @@ class SignupRouter {
                     );
                 })
                 .then ( () => {
-                    console.log("Done")
+                    console.log("User: " + req.body.username + " registered");
                     res.send(
                         JSON.stringify({
                             ok: true
@@ -29,12 +29,11 @@ class SignupRouter {
                 .catch ((err) => {
 
                     console.log("Failed: " + err)
-                    res.send(
-                        JSON.stringify({
-                            ok: false,
-                            message: "Error creating user"
-                        })
-                    );
+                    res.send(JSON.stringify(
+                        {
+                            ok:false
+                        }
+                    ));
                 });
             } else {
                 res.send(

@@ -55,6 +55,7 @@ export default class Signuppage extends React.Component{
     							<Form.Field required>
 									  <input type="checkbox" name="tos"
 									    onChange={this.handleTosChecked}/>
+										I agree to the Terms and Conditions
     							</Form.Field>
 								<Button color='teal' onClick={this.handleSignupButton } fluid size='large'>
 		  							Sign up
@@ -122,14 +123,14 @@ export default class Signuppage extends React.Component{
 		);*/
 		event.preventDefault();
 		console.log(this.state);
-		let data = {
-			username: this.state.username,
-			password: this.state.password,
-			gender: this.state.gender
-		};
 		if(this.state.username && this.state.password){
 			if(this.state.password === this.state.passwordConfirm){
 				if(this.state.tosChecked){
+					let data = {
+						username: this.state.username,
+						password: this.state.password,
+						gender: this.state.gender
+					};
 					fetch('http://localhost:3001/auth/signup',
 					{
 						method: 'POST',
@@ -139,6 +140,12 @@ export default class Signuppage extends React.Component{
 						body: JSON.stringify(data)
 					}).then((res) => {
 						console.log(res);
+						if(res.ok==true){
+							//to managerpage
+							this.setState(
+								{redirectToManager : true}
+							);
+						}
 					});
 				}
 			}

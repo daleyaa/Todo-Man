@@ -9,7 +9,7 @@ class UserDao {
     createTable() {
         let query = "CREATE TABLE IF NOT EXISTS users (" +
                     "id INTEGER PRIMARY KEY, " +
-                    "username TEXT NOT NULL, " +
+                    "username TEXT NOT NULL UNIQUE, " +
                     "password TEXT, " +
                     "gender INTEGER" +
                     ");";
@@ -30,7 +30,7 @@ class UserDao {
 
         return new Promise( (res, rej) => {
             this.dbManager.get(query, params).then( (row) => {
-                if (row === undefinded) {
+                if (row === undefined) {
                     rej("No such user");
                 } else {
                     res ({

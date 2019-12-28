@@ -11,11 +11,9 @@ export default class Loginpage extends React.Component{
 	constructor(props) {
    	super(props);
     	this.state = {username:'',
-			password:'',
-			tosChecked: false};
+			password:''};
     	this.handleUsername = this.handleUsername.bind(this);
 		this.handlePassword = this.handlePassword.bind(this);
-		this.handleTosChecked = this.handleTosChecked.bind(this);
  	}
  	
 	render(){//form
@@ -39,9 +37,9 @@ export default class Loginpage extends React.Component{
         					<Segment stacked>
 			
 								  <Form.Input fluid icon='user' iconPosition='left' placeholder='username' 
-								  	onClick={this.handleUsername}/>
+								  	onChange={this.handleUsername}/>
 								  <Form.Input fluid icon='lock' iconPosition='left' placeholder='Password' 
-								  	type='password' onClick={this.handlePassword}/>
+								  	type='password' onChange={this.handlePassword}/>
 
           						<Button color='teal' onClick={this.handleLoginButton } fluid size='large'>
             						Login
@@ -58,11 +56,34 @@ export default class Loginpage extends React.Component{
 		}
 	}
 
-	handleLoginButton= () => {
-		//to managerpage
-		this.setState(
-			{redirectToManager : true}
-		);
+	handleLoginButton= (event) => {
+		event.preventDefault()
+		if(this.state.username && this.state.password){
+			let data = {
+				username : this.state.username,
+				password : this.state.password
+			};
+			console.log("test");
+			fetch('http://localhost:3001/auth/login',
+			{
+				method : 'POST',
+				headers : {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data)
+			}).then((res) => {
+				console.log(res);
+
+				//to managerpage
+				if(res.body.ok==true){
+					this.setState(
+					 	{redirectToManager : true}
+					);
+				}
+			}).catch((err) => {
+				console.log("Login failed" + err);
+			});
+		}
 	}
 	
 	handleSignup = () => {
@@ -73,6 +94,7 @@ export default class Loginpage extends React.Component{
 	}
 	
 	handlePassword = (event) => {
+		console.log("password");
 		this.setState({
 			username:this.state.username,
 			password:event.target.value,
@@ -82,6 +104,7 @@ export default class Loginpage extends React.Component{
 		});
 	}
 	handleUsername = (event) => {
+		console.log("usename");
 		this.setState({
 			username:event.target.value,
 			password:this.state.password,
@@ -90,12 +113,5 @@ export default class Loginpage extends React.Component{
 			tosChecked:this.state.tosChecked
 		});
 	}
-	handleTosChecked = (event) => {
-		this.setState({
-			username:this.state.username,
-			password:this.state.password,
-			passwordConfirm:this.state.passwordConfirm,
-			tosChecked:event.target.checked ?true : false
-		});
-	}
+	
 }
